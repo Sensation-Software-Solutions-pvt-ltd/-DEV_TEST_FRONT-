@@ -15,26 +15,27 @@
 
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, ReplaySubject, tap } from 'rxjs';
 import { Navigation } from 'app/core/navigation/navigation.types';
 
 @Injectable({
     providedIn: 'root'
 })
-export class financeAndAccountService
-{
+export class financeAndAccountService {
     private _financeAndAccountService: ReplaySubject<Navigation> = new ReplaySubject<Navigation>(1);
-    constructor(private _httpClient: HttpClient)
-    {
+    constructor(private _httpClient: HttpClient) {
     }
-    get financeAndAccount$(): Observable<Navigation>
-    {
+    get financeAndAccount$(): Observable<Navigation> {
         return this._financeAndAccountService.asObservable();
     }
-    get(): Observable<Navigation>
-    {
-        return this._httpClient.get<Navigation>('api/page/listdata').pipe(
+    getUsersList(filter): Observable<Navigation> {
+
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append("page", filter.pageNumber);
+        queryParams = queryParams.append("size", filter.pageSize);
+
+        return this._httpClient.get<Navigation>('api/page/listdata', { params: queryParams }).pipe(
             tap((financeAndAccount) => {
                 this._financeAndAccountService.next(financeAndAccount);
             })

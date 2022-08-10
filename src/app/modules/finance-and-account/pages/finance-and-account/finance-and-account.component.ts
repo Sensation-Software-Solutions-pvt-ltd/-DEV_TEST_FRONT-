@@ -8,28 +8,12 @@ import { financeAndAccountService } from '../../services/finance-and-account-ser
   styleUrls: ['./finance-and-account.component.css']
 })
 export class FinanceAndAccountComponent implements OnInit {
-  filter: any = {};
-  userList: ICandidateListModel[] = [];
-  constructor(private _financeAndAccountService: financeAndAccountService) { }
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.resetFilter();
-    this.getListData(this.filter);
+ 
   }
 
-  resetFilter() {
-    this.filter = {
-      pageNumber: 1,
-      pageSize: 10
-    }
-  }
-
-  getListData(filter: any = {}) {
-    this._financeAndAccountService.get().subscribe(res => {
-      let result: any = res;
-      console.log(result);
-    })
-
-  }
 
 }
