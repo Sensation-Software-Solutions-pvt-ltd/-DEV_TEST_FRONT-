@@ -9,8 +9,10 @@ import { financeAndAccountService } from '../../services/finance-and-account-ser
 })
 export class AgeDebtorsComponent implements OnInit {
   displayedColumns = ["Payee", "Child", "ThreeWeeks", "TwoWeeks", "OneWeeks", "Current", "PendingAmount", "OverPayment", "PendingCredinote", "TotalPendingAmount"];
+  calucatedData={} as ICandidateListModel;
   filter: any = {};
   userList: ICandidateListModel[] = [];
+  totalRecord: number = 0;
   constructor(private _financeAndAccountService: financeAndAccountService) { }
 
   ngOnInit(): void {
@@ -29,15 +31,20 @@ export class AgeDebtorsComponent implements OnInit {
     this._financeAndAccountService.getUsersList(filter).subscribe(res => {
       let result: any = res;
       this.userList = result.users;
+      this.totalRecord = result && result.pagination && result.pagination.length ? result.pagination.length : 0;
+      this.calucatedData=result.calculatedData;
     })
-
   }
 
   pageSizeChange(pageSize) {
     this.resetFilter();
     this.filter.pageSize = pageSize;
     this.getListData(this.filter);
+  }
 
+  paginationChange(pageNumber: number) {
+    this.filter.pageNumber = pageNumber;
+    this.getListData(this.filter);
   }
 
 }

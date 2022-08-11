@@ -22,7 +22,15 @@ export class ListDataMockApi {
                 const begin = page * size;
                 const end = Math.min((size * (page + 1)), usersLength);
                 const lastPage = Math.max(Math.ceil(usersLength / size), 1);
-                let pagination = {};
+                let pagination: any = {};
+                let calculatedData: any = {
+                    OneWeeks: 0,
+                    Current: 0,
+                    PendingAmount: 0,
+                    OverPayment: 0,
+                    PendingCredinote: 0,
+                    TotalPendingAmount: 0
+                };
                 if (page > lastPage) {
                     users = null;
                     pagination = {
@@ -31,6 +39,15 @@ export class ListDataMockApi {
                 }
                 else {
                     users = users.slice(begin, end);
+
+                    users.forEach((res: any) => {
+                        calculatedData.OneWeeks = calculatedData.OneWeeks + res.OneWeeks;
+                        calculatedData.Current = calculatedData.Current + res.Current;
+                        calculatedData.PendingAmount = calculatedData.PendingAmount + res.PendingAmount;
+                        calculatedData.OverPayment = calculatedData.OverPayment + res.OverPayment;
+                        calculatedData.PendingCredinote = calculatedData.PendingCredinote + res.PendingCredinote;
+                        calculatedData.TotalPendingAmount = calculatedData.TotalPendingAmount + res.TotalPendingAmount;
+                    })
                     pagination = {
                         length: usersLength,
                         size: size,
@@ -44,7 +61,8 @@ export class ListDataMockApi {
                     200,
                     {
                         users,
-                        pagination
+                        pagination,
+                        calculatedData,
                     }
                 ];
             });

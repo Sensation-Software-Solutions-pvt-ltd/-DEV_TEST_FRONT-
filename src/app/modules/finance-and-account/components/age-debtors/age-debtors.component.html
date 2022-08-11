@@ -1,61 +1,90 @@
-<table mat-table [dataSource]="userList">
-  <ng-container matColumnDef="Payee">
-    <th mat-header-cell *matHeaderCellDef> Payee </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.Payee}} </td>
-  </ng-container>
+<div class="example-container mat-elevation-z8">
+  <table mat-table
+    [dataSource]="userList  | paginate: {itemsPerPage: filter.pageSize, currentPage: filter.pageNumber, totalItems: totalRecord}">
+    <ng-container matColumnDef="Payee">
+      <th mat-header-cell *matHeaderCellDef> Payee </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.Payee}} </td>
+      <td mat-footer-cell *matFooterCellDef> Total </td>
 
-  <ng-container matColumnDef="Child">
-    <th mat-header-cell *matHeaderCellDef> Child </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.Child}} </td>
-  </ng-container>
+    </ng-container>
 
-  <ng-container matColumnDef="ThreeWeeks">
-    <th mat-header-cell *matHeaderCellDef> ThreeWeeks </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.ThreeWeeks}} </td>
-  </ng-container>
+    <ng-container matColumnDef="Child">
+      <th mat-header-cell *matHeaderCellDef> Child </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.Child}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
 
-  <ng-container matColumnDef="TwoWeeks">
-    <th mat-header-cell *matHeaderCellDef> TwoWeeks </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.TwoWeeks}} </td>
-  </ng-container>
+    </ng-container>
 
-  <ng-container matColumnDef="OneWeeks">
-    <th mat-header-cell *matHeaderCellDef> OneWeeks </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.OneWeeks}} </td>
-  </ng-container>
+    <ng-container matColumnDef="ThreeWeeks">
+      <th mat-header-cell *matHeaderCellDef> 3 Weeks </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.ThreeWeeks}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
 
-  <ng-container matColumnDef="Current">
-    <th mat-header-cell *matHeaderCellDef> Current </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.Current}} </td>
-  </ng-container>
+    </ng-container>
 
-  <ng-container matColumnDef="PendingAmount">
-    <th mat-header-cell *matHeaderCellDef> PendingAmount </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.PendingAmount}} </td>
-  </ng-container>
+    <ng-container matColumnDef="TwoWeeks">
+      <th mat-header-cell *matHeaderCellDef> 2 Weeks </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.TwoWeeks}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
 
-  <ng-container matColumnDef="PendingCredinote">
-    <th mat-header-cell *matHeaderCellDef> PendingCredinote </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.PendingCredinote}} </td>
-  </ng-container>
+    </ng-container>
 
-  <ng-container matColumnDef="OverPayment">
-    <th mat-header-cell *matHeaderCellDef> OverPayment </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.OverPayment}} </td>
-  </ng-container>
+    <ng-container matColumnDef="OneWeeks">
+      <th mat-header-cell *matHeaderCellDef> 1 Weeks </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.OneWeeks}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{ calucatedData.OneWeeks | currency:'USD':'symbol' }} </td>
 
-  <ng-container matColumnDef="TotalPendingAmount">
-    <th mat-header-cell *matHeaderCellDef> TotalPendingAmount </th>
-    <td mat-cell *matCellDef="let emp"> {{emp.TotalPendingAmount}} </td>
-  </ng-container>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <ng-container matColumnDef="Current">
+      <th mat-header-cell *matHeaderCellDef> Current </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.Current}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{calucatedData.Current | currency:'USD':'symbol' }} </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="PendingAmount">
+      <th mat-header-cell *matHeaderCellDef> Pending Amount </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.PendingAmount}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{calucatedData.PendingAmount | currency:'USD':'symbol' }} </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="PendingCredinote">
+      <th mat-header-cell *matHeaderCellDef> PendingCredinote </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.PendingCredinote}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{calucatedData.PendingAmount| currency:'USD':'symbol' }} </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="OverPayment">
+      <th mat-header-cell *matHeaderCellDef> Over Payment </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.OverPayment}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{calucatedData.OverPayment| currency:'USD':'symbol' }} </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="TotalPendingAmount">
+      <th mat-header-cell *matHeaderCellDef> Total Pending Amount </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.TotalPendingAmount}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{calucatedData.TotalPendingAmount| currency:'USD':'symbol' }} </td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+
+</div>
+
 <div>
-  <button  (click)="pageSizeChange(10)" class="mat-focus-indicator mat-raised-button mat-button-base">10</button>
-  <button (click)="pageSizeChange(20)"class="mat-focus-indicator mat-raised-button mat-button-base">20</button>
-  <button (click)="pageSizeChange(30)"class="mat-focus-indicator mat-raised-button mat-button-base">30</button>
-  <button (click)="pageSizeChange(40)"class="mat-focus-indicator mat-raised-button mat-button-base">40</button>
-  <button (click)="pageSizeChange(50)"class="mat-focus-indicator mat-raised-button mat-button-base">50</button>
+  <button (click)="pageSizeChange(10)" class="mat-focus-indicator mat-raised-button mat-button-base">10</button>
+  <button (click)="pageSizeChange(20)" class="mat-focus-indicator mat-raised-button mat-button-base">20</button>
+  <button (click)="pageSizeChange(30)" class="mat-focus-indicator mat-raised-button mat-button-base">30</button>
+  <button (click)="pageSizeChange(40)" class="mat-focus-indicator mat-raised-button mat-button-base">40</button>
+  <button (click)="pageSizeChange(50)" class="mat-focus-indicator mat-raised-button mat-button-base">50</button>
+</div>
+<div>
+  <pagination-controls (pageChange)="paginationChange($event)"></pagination-controls>
 </div>

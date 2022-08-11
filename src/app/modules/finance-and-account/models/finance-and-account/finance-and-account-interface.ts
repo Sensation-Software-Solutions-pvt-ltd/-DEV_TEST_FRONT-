@@ -1,14 +1,13 @@
 
-
 export interface ICandidateListModel {
-  Payee: string,
-  Child: string,
-  ThreeWeeks: string,
-  TwoWeeks: string,
-  OneWeeks: string,
-  Current: string,
-  PendingAmount: string,
-  OverPayment: string,
-  PendingCredinote: string,
-  TotalPendingAmount: string,
+  Payee?: string,
+  Child?: string,
+  ThreeWeeks?: string,
+  TwoWeeks?: string,
+  OneWeeks?: number,
+  Current?: number,
+  PendingAmount?: number,
+  OverPayment?: number,
+  PendingCredinote?: number,
+  TotalPendingAmount?: number,
 }
