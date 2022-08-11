@@ -12,13 +12,34 @@ import { CreditNotesComponent } from './components/credit-notes/credit-notes.com
 import { BondPaymentComponent } from './components/bond-payment/bond-payment.component';
 import { AgeDebtorsComponent } from './components/age-debtors/age-debtors.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatSortModule } from '@angular/material/sort';
+import { FuseCardModule } from '@fuse/components/card'
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   imports: [
     CommonModule,
     MatTabsModule,
     MatTableModule,
+    MatSortModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,  
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+     
+   
+
+    
     FinanceAndAccountRoutingModule,
     NgxPaginationModule,
+    FuseCardModule,
+  
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [

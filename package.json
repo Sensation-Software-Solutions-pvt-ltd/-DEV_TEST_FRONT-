@@ -14,6 +14,7 @@
         "lint": "ng lint"
     },
     "dependencies": {
+        "@angular-devkit/build-angular": "14.0.0",
         "@angular/animations": "14.0.0",
         "@angular/cdk": "14.0.0",
         "@angular/cli": "14.0.0",
@@ -21,13 +22,13 @@
         "@angular/compiler": "14.0.0",
         "@angular/compiler-cli": "14.0.0",
         "@angular/core": "14.0.0",
-        "@angular-devkit/build-angular": "14.0.0",
         "@angular/forms": "14.0.0",
         "@angular/material": "14.0.0",
         "@angular/material-moment-adapter": "14.0.0",
         "@angular/platform-browser": "14.0.0",
         "@angular/platform-browser-dynamic": "14.0.0",
         "@angular/router": "14.0.0",
+        "@netlify-builder/deploy": "^5.0.0",
         "@ngneat/transloco": "4.0.0",
         "apexcharts": "3.35.3",
         "crypto-js": "3.3.0",
@@ -46,7 +47,6 @@
         "zone.js": "0.11.5"
     },
     "devDependencies": {
-        
         "@angular-eslint/builder": "13.2.1",
         "@angular-eslint/eslint-plugin": "13.2.1",
         "@angular-eslint/eslint-plugin-template": "13.2.1",

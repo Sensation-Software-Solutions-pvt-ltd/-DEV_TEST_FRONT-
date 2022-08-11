@@ -18,8 +18,9 @@ export class ListDataMockApi {
                 const page = parseInt(request.params.get('page') ?? '1', 10);
                 const size = parseInt(request.params.get('size') ?? '10', 10);
                 let users: any[] | null = cloneDeep(this._list);
+                debugger;
                 const usersLength = users.length;
-                const begin = page * size;
+                const begin = ((page-1) * size);
                 const end = Math.min((size * (page + 1)), usersLength);
                 const lastPage = Math.max(Math.ceil(usersLength / size), 1);
                 let pagination: any = {};

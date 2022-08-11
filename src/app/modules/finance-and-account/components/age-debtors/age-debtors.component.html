@@ -1,90 +1,151 @@
+<fuse-card>
+  <!-- <mat-form-field appearance="fill">
+        <mat-label>Choose an option</mat-label>
+        <mat-select>
+          <mat-option value="option1">Option 1</mat-option>
+          <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+  <!-- 
+    <div>
+      <section class="example-section">
+        <mat-checkbox class="example-margin">Include those parent who are in</mat-checkbox>
+      </section>
+    </div> -->
+  <!-- <div>
+      <button class="relative py-2 px-8 text-md font-medium leading-5 rounded-full bg-primary text-on-primary">
+     Hello 
+      </button>
+
+    </div> -->
+  <!-- <div>
+      <button class="relative py-2 px-8 text-md font-medium leading-5 rounded-full bg-primary text-on-primary">
+          <mat-icon role="img" class="mat-icon notranslate icon-size-6 mat-icon-no-color" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="refresh" data-mat-icon-namespace="heroicons_outline">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+          </mat-icon>
+         </button>
+    </div>
+  </div> -->
+
+  <form class="mt-12">
+    <mat-form-field class="w-full">
+      <mat-label>Child</mat-label>
+      <mat-select>
+        <mat-option value="option1">Option 1</mat-option>
+        <mat-option value="option2">Option 2</mat-option>
+        <mat-option value="option3">Option 3</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Payee</mat-label>
+      <mat-select>
+        <mat-option value="option1">Option 1</mat-option>
+        <mat-option value="option2">Option 2</mat-option>
+        <mat-option value="option3">Option 3</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-checkbox>Include those parent who are in credit</mat-checkbox>
+    <button mat-icon-button type="button" class="">Search</button>
+
+  </form>
+
+</fuse-card>
 <div class="example-container mat-elevation-z8">
-  <table mat-table
-    [dataSource]="userList  | paginate: {itemsPerPage: filter.pageSize, currentPage: filter.pageNumber, totalItems: totalRecord}">
-    <ng-container matColumnDef="Payee">
-      <th mat-header-cell *matHeaderCellDef> Payee </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.Payee}} </td>
-      <td mat-footer-cell *matFooterCellDef> Total </td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="Child">
-      <th mat-header-cell *matHeaderCellDef> Child </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.Child}} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="ThreeWeeks">
-      <th mat-header-cell *matHeaderCellDef> 3 Weeks </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.ThreeWeeks}} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="TwoWeeks">
-      <th mat-header-cell *matHeaderCellDef> 2 Weeks </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.TwoWeeks}} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="OneWeeks">
-      <th mat-header-cell *matHeaderCellDef> 1 Weeks </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.OneWeeks}} </td>
-      <td mat-footer-cell *matFooterCellDef> {{ calucatedData.OneWeeks | currency:'USD':'symbol' }} </td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="Current">
-      <th mat-header-cell *matHeaderCellDef> Current </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.Current}} </td>
-      <td mat-footer-cell *matFooterCellDef> {{calucatedData.Current | currency:'USD':'symbol' }} </td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="PendingAmount">
-      <th mat-header-cell *matHeaderCellDef> Pending Amount </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.PendingAmount}} </td>
-      <td mat-footer-cell *matFooterCellDef> {{calucatedData.PendingAmount | currency:'USD':'symbol' }} </td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="PendingCredinote">
-      <th mat-header-cell *matHeaderCellDef> PendingCredinote </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.PendingCredinote}} </td>
-      <td mat-footer-cell *matFooterCellDef> {{calucatedData.PendingAmount| currency:'USD':'symbol' }} </td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="OverPayment">
-      <th mat-header-cell *matHeaderCellDef> Over Payment </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.OverPayment}} </td>
-      <td mat-footer-cell *matFooterCellDef> {{calucatedData.OverPayment| currency:'USD':'symbol' }} </td>
-
-    </ng-container>
-
-    <ng-container matColumnDef="TotalPendingAmount">
-      <th mat-header-cell *matHeaderCellDef> Total Pending Amount </th>
-      <td mat-cell *matCellDef="let emp"> {{emp.TotalPendingAmount}} </td>
-      <td mat-footer-cell *matFooterCellDef> {{calucatedData.TotalPendingAmount| currency:'USD':'symbol' }} </td>
-
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-  </table>
-
+  <ng-container *ngIf="dataSource">
+    <table mat-table matSort
+      [dataSource]="dataSource | paginate: {itemsPerPage: filter.pageSize, currentPage: filter.pageNumber, totalItems: totalRecord}">
+      <ng-container matColumnDef="Payee">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Payee </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.Payee}} </td>
+        <td mat-footer-cell *matFooterCellDef> Total </td>
+      </ng-container>
+      <ng-container matColumnDef="Child">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Child </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.Child}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+      <ng-container matColumnDef="ThreeWeeks">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> 3 Weeks </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.ThreeWeeks}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+      <ng-container matColumnDef="TwoWeeks">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> 2 Weeks </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.TwoWeeks}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+      <ng-container matColumnDef="OneWeeks">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> 1 Weeks </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.OneWeeks}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{ calucatedData?.OneWeeks | currency:'USD':'symbol' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="Current">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Current </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.Current}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{calucatedData?.Current | currency:'USD':'symbol' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="PendingAmount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pending Amount </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.PendingAmount}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{calucatedData?.PendingAmount | currency:'USD':'symbol' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="PendingCredinote">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PendingCredinote </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.PendingCredinote}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{calucatedData?.PendingAmount| currency:'USD':'symbol' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="OverPayment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Over Payment </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.OverPayment}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{calucatedData?.OverPayment| currency:'USD':'symbol' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="TotalPendingAmount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Pending Amount </th>
+        <td mat-cell *matCellDef="let emp"> {{emp?.TotalPendingAmount}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{calucatedData?.TotalPendingAmount| currency:'USD':'symbol' }} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    </table>
+    <div>
+      <button (click)="pageSizeChange(10)" class="mat-focus-indicator mat-raised-button mat-button-base">10</button>
+      <button (click)="pageSizeChange(20)" class="mat-focus-indicator mat-raised-button mat-button-base">20</button>
+      <button (click)="pageSizeChange(30)" class="mat-focus-indicator mat-raised-button mat-button-base">30</button>
+      <button (click)="pageSizeChange(40)" class="mat-focus-indicator mat-raised-button mat-button-base">40</button>
+      <button (click)="pageSizeChange(50)" class="mat-focus-indicator mat-raised-button mat-button-base">50</button>
+    </div>
+    <div>
+      <pagination-controls (pageChange)="paginationChange($event)"></pagination-controls>
+    </div>
+  </ng-container>
+</div>
+<div
+  class="settings-cog fixed flex items-center justify-center right-0 w-6 h-8 shadow-lg rounded-l-lg cursor-pointer bg-red-600 bg-opacity-90"
+  style="top: 275px;">
+  <mat-icon role="img" aria-hidden="true" data-mat-icon-type="font"
+    class="mat-icon notranslate icon-size-5 text-white  mat-icon-no-color material-icons">
+    <svg viewBox="0 0 24 24" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+      </path>
+    </svg>
+  </mat-icon>
 </div>
 
-<div>
-  <button (click)="pageSizeChange(10)" class="mat-focus-indicator mat-raised-button mat-button-base">10</button>
-  <button (click)="pageSizeChange(20)" class="mat-focus-indicator mat-raised-button mat-button-base">20</button>
-  <button (click)="pageSizeChange(30)" class="mat-focus-indicator mat-raised-button mat-button-base">30</button>
-  <button (click)="pageSizeChange(40)" class="mat-focus-indicator mat-raised-button mat-button-base">40</button>
-  <button (click)="pageSizeChange(50)" class="mat-focus-indicator mat-raised-button mat-button-base">50</button>
-</div>
-<div>
-  <pagination-controls (pageChange)="paginationChange($event)"></pagination-controls>
+<div
+  class="settings-cog fixed flex items-center justify-center right-0 w-6 h-8 shadow-lg rounded-l-lg cursor-pointer bg-red-600 bg-opacity-90"
+  style="top: 320px;">
+  <mat-icon role="img" aria-hidden="true" data-mat-icon-type="font"
+    class="mat-icon notranslate icon-size-5 text-white  mat-icon-no-color material-icons">
+    <svg viewBox="0 0 24 24" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+      </path>
+    </svg>
+  </mat-icon>
 </div>
