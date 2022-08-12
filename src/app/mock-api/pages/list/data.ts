@@ -1,3 +1,36 @@
+export const payee = [{
+	"Payee": "John",
+}, {
+	"Payee": "Doe",
+}, {
+	"Payee": "Cal",
+},
+{
+	"Payee": "Zon"
+},
+{
+	"Payee": "Sam"
+}, {
+	"Payee": "John"
+}, {
+	"Payee": "Can"
+}]
+
+export const child = [{
+	"Child": "Hem",
+}, {
+	"Child": "Tim",
+}, {
+	"Child": "Doj",
+},
+{
+	"Child": "Him",
+},
+{
+	"Child": "Doj",
+},
+]
+
 export const list = [{
 	"Payee": "John",
 	"Child": "Hem",

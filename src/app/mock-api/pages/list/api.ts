@@ -1,26 +1,57 @@
 import { Injectable } from '@angular/core';
 import { assign, cloneDeep } from 'lodash-es';
 import { FuseMockApiService } from '@fuse/lib/mock-api';
-import { list } from './data';
+import { child, list, payee } from './data';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ListDataMockApi {
     private _list: any = list;
+    private _payee: any = payee;
+    private _child: any = child;
+
     constructor(private _fuseMockApiService: FuseMockApiService) {
         this.registerHandlers();
     }
+
     registerHandlers(): void {
         this._fuseMockApiService
-            .onGet('api/page/listdata', 300)
+            .onGet('api/page/getAllChilds', 300)
+            .reply(() =>
+                [
+                    200,
+                    {
+                        childs: cloneDeep(this._child),
+                    }
+                ]
+            );
+
+        this._fuseMockApiService
+            .onGet('api/page/getAllPayee', 300)
+            .reply(() =>
+                [
+                    200,
+                    {
+                        payees: cloneDeep(this._payee),
+                    }
+                ]
+            );
+
+
+        this._fuseMockApiService
+            .onPost('api/page/listdata', 300)
             .reply(({ request }) => {
-                const page = parseInt(request.params.get('page') ?? '1', 10);
-                const size = parseInt(request.params.get('size') ?? '10', 10);
+                const page = request.body.pageNumber
+                const size = request.body.pageSize
+                const child = request.body.child
+                const payee = request.body.payee
                 let users: any[] | null = cloneDeep(this._list);
-                debugger;
+                if (child || payee) {
+                    users = users.filter(user => user.Child === child || user.Payee === payee);
+                }
                 const usersLength = users.length;
-                const begin = ((page-1) * size);
+                const begin = ((page - 1) * size);
                 const end = Math.min((size * (page + 1)), usersLength);
                 const lastPage = Math.max(Math.ceil(usersLength / size), 1);
                 let pagination: any = {};
@@ -32,6 +63,9 @@ export class ListDataMockApi {
                     PendingCredinote: 0,
                     TotalPendingAmount: 0
                 };
+
+
+
                 if (page > lastPage) {
                     users = null;
                     pagination = {
@@ -67,9 +101,6 @@ export class ListDataMockApi {
                     }
                 ];
             });
-
     }
-
-
 
 }

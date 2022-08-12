@@ -11,3 +11,11 @@ export interface ICandidateListModel {
   PendingCredinote?: number,
   TotalPendingAmount?: number,
 }
+
+export interface IPayeeListModel {
+  Payee: string,
+}
+
+export interface IChildListModel {
+  Child: string,
+}

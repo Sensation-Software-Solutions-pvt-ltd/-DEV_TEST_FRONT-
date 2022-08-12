@@ -20,6 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { PaginationModule } from 'app/common-components/app-pagination/app-pagination.module';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
@@ -32,13 +36,13 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-     
-   
-
-    
+    MatDatepickerModule,
+    MatNativeDateModule ,
     FinanceAndAccountRoutingModule,
     NgxPaginationModule,
     FuseCardModule,
+    PaginationModule,
+    ReactiveFormsModule,
   
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
